@@ -6,6 +6,9 @@ import NotFound from "./views/NotFound.jsx";
 import DefaultLayout from "./components/DefaultLayout.jsx";
 import GuestLayout from "./components/GuestLayout.jsx";
 import Dashboard from "./views/Dashboard.jsx";
+import Posts from "./views/Posts.jsx";
+import PostCreateForm from "./views/PostCreateForm.jsx";
+import PostsLiked from "./views/PostsLiked.jsx";
 
 const router = createBrowserRouter([
   {
@@ -14,15 +17,23 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Navigate to="/users" />
+        element: <Navigate to="/posts" />
       },
       {
         path: '/dashboard',
         element: < Dashboard />
       },
       {
-        path: '/users',
-        element: < Users />
+        path: '/liked-posts',
+        element: < PostsLiked />
+      },
+      {
+        path: '/posts',
+        element: < Posts />
+      },
+      {
+        path: '/post/create',
+        element: < PostCreateForm key="postCreate"/>
       }
     ]
   },

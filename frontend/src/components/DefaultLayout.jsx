@@ -30,12 +30,13 @@ export default function DefaultLayout () {
     <div id="defaultLayout">
       <aside>
         <Link to="/dashboard">Dashboard</Link>
-        <Link to="/users">Users</Link>
+        <Link to="/liked-posts">Liked Posts</Link>
+        <Link to="/posts">Posts</Link>
       </aside>
       <div className="content">
         <header>
           <div>
-            Header
+            Post Management
           </div>
           <div>
             {user.name}
