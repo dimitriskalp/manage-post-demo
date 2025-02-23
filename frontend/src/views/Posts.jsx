@@ -33,8 +33,8 @@ export default function Posts() {
       <div className="post-container animated fadeInDown">
         {Object.keys(posts).map((key) => (
 
-          <div className="post">
-            <div key={key} className="post-content">
+          <div key={key.id} className="post">
+            <div className="post-content">
               <h2>{posts[key].title}</h2>
               <p>{posts[key].body}</p>
             </div>

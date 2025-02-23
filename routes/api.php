@@ -21,7 +21,7 @@ Route::post('/signup', [AuthController::class, 'signup']);
 Route::post('/login', [AuthController::class, 'login']);
 
 
-Route::get('/posts', [PostController::class, 'index']);
+Route::middleware('auth:sanctum')->get('/posts', [PostController::class, 'index']);
 Route::middleware('auth:sanctum')->post('/posts', [PostController::class, 'store']);
 Route::middleware('auth:sanctum')->post('/posts/{post}/like', [LikeController::class, 'store']);
 Route::middleware('auth:sanctum')->get('/liked-posts', [LikeController::class, 'index']);

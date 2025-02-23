@@ -15,9 +15,12 @@ class PostController extends Controller
      */
     public function index()
     {
+        $user = auth();
         //we need to add get to execute the query
         //Show the post with descending order by created date
-        return PostResource::collection(Post::query()->orderBy('created_at','desc')->get());
+        return PostResource::collection(Post::whereDoesntHave('likes', function($query) use ($user) {
+            return $query->where('user_id', $user->id());
+        })->orderBy('created_at','desc')->get());
     }
 
     /**
