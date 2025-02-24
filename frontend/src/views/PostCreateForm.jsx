@@ -12,9 +12,11 @@ export default function PostCreateForm () {
   const navigate = useNavigate();
   const onSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     axiosClient.post('/posts', post)
-      .then(({data}) => {
+      .then(() => {
         navigate('/posts');
+        setLoading(false);
       })
       .catch(error => {
         const response = error.response;
@@ -45,9 +47,9 @@ export default function PostCreateForm () {
         }
         {!loading &&
           <form onSubmit={onSubmit}>
-            <input type="text" onChange={ev => setPost({...post, title: ev.target.value})} placeholder="Title"/>
-            <input type="text" onChange={ev => setPost({...post, body: ev.target.value})} placeholder="Body"/>
-            <button className="btn">Create</button>
+            <input className="custom-input" type="text" onChange={ev => setPost({...post, title: ev.target.value})} placeholder="Title"/>
+            <input className="custom-input" type="text" onChange={ev => setPost({...post, body: ev.target.value})} placeholder="Body"/>
+            <button className="btn-add">Create</button>
           </form>
         }
       </div>

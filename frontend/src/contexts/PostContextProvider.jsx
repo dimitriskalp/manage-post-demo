@@ -30,7 +30,7 @@ export const PostProvider = ({children}) => {
   // }, []);
 
   return (
-    <PostsContext.Provider value={ { posts, loading, fetchPosts } }>
+    <PostsContext.Provider value={ { posts,setPosts, loading,setLoading, fetchPosts } }>
       {children}
     </PostsContext.Provider>
   );

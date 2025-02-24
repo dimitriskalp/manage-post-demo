@@ -51,8 +51,8 @@ export default function Login () {
               }
             </div>
           }
-          <input ref={emailRef} type="email" placeholder="Email"/>
-          <input ref={passwordRef} type="password" placeholder="Password"/>
+          <input className="custom-input" ref={emailRef} type="email" placeholder="Email"/>
+          <input className="custom-input" ref={passwordRef} type="password" placeholder="Password"/>
           <button className="btn btn-block">Submit</button>
           <p className="message">
             Not Registered <Link to="/signup">Create an account</Link>

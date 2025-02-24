@@ -6,24 +6,25 @@ use App\Http\Controllers\Api\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-//Route::get('/user', function (Request $request) {
-//    return $request->user();
-//})->middleware('auth:sanctum');
+Route::post('/signup', [AuthController::class, 'signup']);
+Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
     Route::post('/logout', [AuthController::class, 'logout']);
+
+    Route::prefix('posts')->group(function () {
+        Route::get('/', [PostController::class, 'index']);
+        Route::post('/', [PostController::class, 'store']);
+        Route::get('/search', [PostController::class, 'search']);
+        Route::post('{post}/like', [LikeController::class, 'store']);
+        Route::delete('{post}/unlike', [LikeController::class, 'destroy']);
+    });
+
+    Route::prefix('liked-posts')->group(function () {
+        Route::get('/', [LikeController::class, 'index']);
+        Route::delete('/', [LikeController::class, 'destroy']);
+    });
 });
-
-Route::post('/signup', [AuthController::class, 'signup']);
-Route::post('/login', [AuthController::class, 'login']);
-
-
-Route::middleware('auth:sanctum')->get('/posts', [PostController::class, 'index']);
-Route::middleware('auth:sanctum')->post('/posts', [PostController::class, 'store']);
-Route::middleware('auth:sanctum')->post('/posts/{post}/like', [LikeController::class, 'store']);
-Route::middleware('auth:sanctum')->get('/liked-posts', [LikeController::class, 'index']);
-Route::middleware('auth:sanctum')->delete('/liked-posts', [LikeController::class, 'destroy']);
-Route::middleware('auth:sanctum')->delete('/posts/{post}/unlike', [LikeController::class, 'destroy']);
