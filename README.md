@@ -21,7 +21,7 @@ To see the code and the running application you need to follow these steps:
 
 To access the application, you must first register. On the homepage, all fetched posts are displayed in descending order.
 In the top right corner, there is a "Create Post" button that redirects you to the post creation page. In the middle of the 
-header, a search bar allows you to search for posts by title or body content. You can like any post, and the page will 
+header, a search input allows you to search for posts by title or body content. You can like any post, and the page will 
 automatically update to display only unliked posts.To view your liked posts, navigate to the "Liked Posts" section in the 
 left menu. From there, you can unlike individual posts or clear all liked posts at once.
 
@@ -29,6 +29,7 @@ Bonus Features:
 - Search
 - Caching in backend-side
 - Good UX
+- Lazy loading
 
 
 Note: I is not responsive in mobile application and to run this application you need php version higher than 8.
