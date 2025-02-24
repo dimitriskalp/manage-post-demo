@@ -16,7 +16,7 @@ To see the code and the running application you need to follow these steps:
 7. Now start the backend with this command -> php artisan serve
 8. Open another new terminal and go to the frontend folder -> cd frontend 
 9. Run -> npm install
-10. Run npm run dev
+10. Run -> npm run dev
 
 
 To enter the application you need to register first. In the first page you will see all the fetched post in descending order.
