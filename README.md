@@ -17,6 +17,7 @@ To see the code and the running application you need to follow these steps:
 8. Open a new terminal and go to the frontend folder -> "cd frontend" 
 9. Run -> "npm install"
 10. Run -> "npm run dev"
+11. http://localhost:3000/
 
 
 To access the application, you must first register. On the homepage, all fetched posts are displayed in descending order.
