@@ -24,34 +24,45 @@ export default function PostCreateForm () {
         if (response && response.status === 422) {
           setErrors(response.data.errors);
         }
+        setLoading(false);
       });
   }
   return (
-    <div>
-      <h1>New Post</h1>
-      <div className="card animated fadeInDown">
-        {loading &&
-          <div className="loading-overlay" id="loading-overlay">
-            <div className="spinner"></div>
-          </div>
-        }
-        {
-          errors && <div className="alert">
-            {
-              Object.keys(errors).map(key => (
-                  <p key={key}>{errors[key][0]}</p>
+    <div className="container">
+      <div className="row justify-content-center">
+        <div className="col-12">
+          <h3>New Post</h3>
+          {loading &&
+            <div className="loading-overlay" id="loading-overlay">
+              <div className="spinner"></div>
+            </div>
+          }
+          {
+            errors && <div className="alert-login">
+              {
+                Object.keys(errors).map(key => (
+                    <p key={key}>{errors[key][0]}</p>
+                  )
                 )
-              )
-            }
-          </div>
-        }
-        {!loading &&
-          <form onSubmit={onSubmit}>
-            <input className="custom-input" type="text" onChange={ev => setPost({...post, title: ev.target.value})} placeholder="Title"/>
-            <input className="custom-input" type="text" onChange={ev => setPost({...post, body: ev.target.value})} placeholder="Body"/>
-            <button className="btn-add">Create</button>
-          </form>
-        }
+              }
+            </div>
+          }
+          {!loading &&
+            <form onSubmit={onSubmit}>
+              <div className="form-group">
+                <label htmlFor="title" className="form-label">Title</label>
+                <input className="form-control" type="text" id="title" onChange={ev => setPost({...post, title: ev.target.value})}/>
+              </div>
+              <div className="form-group">
+                <label htmlFor="post-body" className="form-label">Body</label>
+                <input className="form-control" type="text" id="post-body" onChange={ev => setPost({...post, body: ev.target.value})}/>
+              </div>
+              <div className="form-group mt-3">
+                <button className="btn btn-success btn-create">Create</button>
+              </div>
+            </form>
+          }
+        </div>
       </div>
     </div>
   )

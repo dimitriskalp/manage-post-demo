@@ -23,10 +23,15 @@ export default function PostsLiked() {
   }
 
   return (
-    <div>
-      <div className="post-header">
-        <h2>Liked Posts</h2>
-        <button onClick={ev => unLikeAllPosts()} className="like-button">Unlike All</button>
+    <div className="container mt-5">
+      <div className="row mb-5">
+        <div className="col-md-6 col-sm-6 col-xs-12">
+          <h2>Like Posts</h2>
+        </div>
+        <div className="col-md-6 col-sm-6 col-xs-12 text-end">
+          <button onClick={ev => unLikeAllPosts()} className="btn btn-outline-danger fw-bold">Unlike All</button>
+          {/*<Link to="/post/create" className="btn btn-success h-100 align-content-center fw-bold">Create Post</Link>*/}
+        </div>
       </div>
       {loading &&
         <div className="loading-overlay" id="loading-overlay">
@@ -35,7 +40,7 @@ export default function PostsLiked() {
       }
 
       {!loading &&
-        <div className="post-container animated fadeInDown">
+        <div className="row">
           {posts.length === 0 &&
             <h3 className="warning">
               You haven't liked any posts yet.
@@ -43,13 +48,18 @@ export default function PostsLiked() {
           }
           {posts.length > 0 &&
             Object.keys(posts).map((key) => (
-
-              <div key={posts[key].id} className="post">
-                <div className="post-content">
-                  <h2>{posts[key].title}</h2>
-                  <p>{posts[key].body}</p>
+              <div key={posts[key].id} className="card p-3 shadow-lg border-0 rounded-4 mb-3">
+                <div className="d-flex justify-content-between align-items-start">
+                  <div>
+                    <h5 className="fw-bold">{posts[key].title}</h5>
+                    <p className="text-muted">
+                      {posts[key].body}
+                    </p>
+                  </div>
+                  <div>
+                    <button onClick={ev => unLikePost(posts[key].id)} className="btn btn-outline-danger fw-bold">Unlike</button>
+                  </div>
                 </div>
-                <button onClick={ev => unLikePost(posts[key].id)} className="like-button">Unlike</button>
               </div>
             ))
           }

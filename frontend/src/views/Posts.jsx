@@ -15,7 +15,7 @@ export default function Posts() {
   const likePost = post => {
     axiosClient.post(`/posts/${post}/like`)
       .then(() => {
-        fetchPosts()
+        fetchPosts();
       })
   }
 
@@ -39,38 +39,49 @@ export default function Posts() {
   }
 
   return (
-    <div>
-      <div className="post-header">
-        <h2>Posts</h2>
-
-        <form onSubmit={handleSearch} className="search-form" role="search">
-          <div className="search-container">
-            <input onChange={handleChange} ref={searchRef} id="search-input" type="search" placeholder="Search..." autoFocus required/>
-            <button className="btn-search" type="submit">Go</button>
-          </div>
-        </form>
-
-        <Link to="/post/create" className="btn-add">Create Post</Link>
+    <div className="container mt-5">
+      <div className="row mb-5">
+        <div className="col-md-4 col-sm-4 col-xs-12 mb-3 mb-sm-0">
+          <h2>Posts</h2>
+        </div>
+        <div className="col-md-4 col-sm-4 col-xs-12 mb-3 mb-sm-0">
+          <form onSubmit={handleSearch} className="form-main">
+            <div className="row ">
+              <div className="col-md-6 w-100">
+                <div className="input-group">
+                  <input onChange={handleChange} ref={searchRef} className="form-control form-control-lg" type="search" placeholder="Search"
+                         aria-label="Search"/>
+                    <button className="btn-search" type="submit">GO</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div className="col-md-4 col-sm-4 col-xs-12 text-sm-end">
+          <Link to="/post/create" className="btn btn-success h-100 align-content-center fw-bold">Create Post</Link>
+        </div>
       </div>
       {loading &&
         <div className="loading-overlay" id="loading-overlay">
           <div className="spinner"></div>
         </div>
       }
-
       {!loading &&
-      <div className="post-container animated fadeInDown">
-        {Object.keys(posts).map((key) => (
-
-          <div key={posts[key].id} className="post">
-            <div className="post-content">
-              <h2>{posts[key].title}</h2>
-              <p>{posts[key].body}</p>
+        Object.keys(posts).map((key) => (
+          <div key={posts[key].id} className="card p-3 shadow-lg border-0 rounded-4 mb-3">
+            <div className="d-flex justify-content-between align-items-start">
+              <div>
+                <h5 className="fw-bold">{posts[key].title}</h5>
+                <p className="text-muted">
+                  {posts[key].body}
+                </p>
+              </div>
+              <div>
+                <button onClick={ev => likePost(posts[key].id)} className="btn btn-outline-danger fw-bold">Like</button>
+              </div>
             </div>
-            <button onClick={ev => likePost(posts[key].id)} className="like-button">Like</button>
           </div>
-        ))}
-      </div>
+        ))
       }
     </div>
   )

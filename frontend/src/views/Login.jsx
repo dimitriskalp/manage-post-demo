@@ -37,27 +37,37 @@ export default function Login () {
   }
 
   return (
-    <div className="login-signup-form animated fadeInDown">
-      <div className="form">
-        <form onSubmit={onSubmit}>
-          <h1 className="title">Login into your account</h1>
-          {
-            errors && <div className="alert">
-              {
-                Object.keys(errors).map(key => (
-                    <p key={key}>{errors[key][0]}</p>
+    <div className="container login-container">
+      <div className="row justify-content-center">
+        <div className="col-md-6 login-form">
+          <form onSubmit={onSubmit}>
+            <h3 className="title mb-4">Login into your account</h3>
+            {
+              errors && <div className="alert-login">
+                {
+                  Object.keys(errors).map(key => (
+                      <p key={key}>{errors[key][0]}</p>
+                    )
                   )
-                )
-              }
+                }
+              </div>
+            }
+            <div className="form-group">
+              <label htmlFor="email" className="form-label">Email address</label>
+              <input ref={emailRef} type="email" className="form-control" id="email" aria-describedby="emailHelp"/>
             </div>
-          }
-          <input className="custom-input" ref={emailRef} type="email" placeholder="Email"/>
-          <input className="custom-input" ref={passwordRef} type="password" placeholder="Password"/>
-          <button className="btn btn-block">Submit</button>
-          <p className="message">
-            Not Registered <Link to="/signup">Create an account</Link>
-          </p>
-        </form>
+            <div className="form-group">
+              <label htmlFor="password" className="form-label">Password</label>
+              <input ref={passwordRef} type="password" className="form-control" id="password"/>
+            </div>
+            <div className="form-group mt-3">
+              <button type="submit" className="btnSubmit">Login</button>
+            </div>
+            <p className="message mt-3">
+              Not Registered <Link to="/signup">Create an account</Link>
+            </p>
+          </form>
+        </div>
       </div>
     </div>
   )

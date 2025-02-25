@@ -34,30 +34,45 @@ export default function Signup () {
   }
 
   return (
-    <div className="login-signup-form animated fadeInDown">
-      <div className="form">
-        <form onSubmit={onSubmit}>
-          <h1 className="title">Signup</h1>
-          {
-            errors && <div className="alert">
-              {
-                Object.keys(errors).map(key => (
-                    <p key={key}>{errors[key][0]}</p>
+    <div className="container login-container">
+      <div className="row justify-content-center">
+        <div className="col-md-6 login-form">
+          <form onSubmit={onSubmit}>
+            <h3 className="title">Signup</h3>
+            {
+              errors && <div className="alert-login">
+                {
+                  Object.keys(errors).map(key => (
+                      <p key={key}>{errors[key][0]}</p>
+                    )
                   )
-                )
-              }
+                }
+              </div>
+            }
+            <div className="form-group">
+              <label htmlFor="name" className="form-label">Full Name</label>
+              <input className="form-control" ref={nameRef} type="text" id ="name"/>
             </div>
-          }
-
-          <input className="custom-input" ref={nameRef} type="text" placeholder="Full Name"/>
-          <input className="custom-input" ref={emailRef} type="email" placeholder="Email"/>
-          <input className="custom-input" ref={passwordRef} type="password" placeholder="Password"/>
-          <input className="custom-input" ref={passwordConfirmationRef} type="password" placeholder="Password Confirmation"/>
-          <button className="btn btn-block">Signup</button>
-          <p className="message">
-            Already Registered <Link to="/login">Sign in</Link>
-          </p>
-        </form>
+            <div className="form-group">
+              <label htmlFor="email" className="form-label">Email</label>
+              <input ref={emailRef} type="email" className="form-control" id="email"/>
+            </div>
+            <div className="form-group">
+              <label htmlFor="password" className="form-label">Password</label>
+              <input ref={passwordRef} type="password" className="form-control" id="password"/>
+            </div>
+            <div className="form-group">
+              <label htmlFor="password_confirmation" className="form-label">Password Confirmation</label>
+              <input ref={passwordConfirmationRef} type="password" className="form-control" id="password_confirmation"/>
+            </div>
+            <div className="form-group mt-3">
+              <button type="submit" className="btnSubmit">Signup</button>
+            </div>
+            <p className="message mt-3">
+              Already Registered <Link to="/login">Sign in</Link>
+            </p>
+          </form>
+        </div>
       </div>
     </div>
   )
