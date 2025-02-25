@@ -17,7 +17,7 @@ To see the code and the running application you need to follow these steps:
 8. Open a new terminal and go to the frontend folder -> "cd frontend" 
 9. Run -> "npm install"
 10. Run -> "npm run dev"
-11. http://localhost:3000/
+11. Hit in the browser: http://localhost:3000/
 
 
 To access the application, you must first register. On the homepage, all fetched posts are displayed in descending order.
@@ -29,8 +29,8 @@ left menu. From there, you can unlike individual posts or clear all liked posts 
 Bonus Features: 
 - Search
 - Caching in backend-side
-- Good UX
 - Lazy loading
+- Good UX
 
 
-Note: I is not responsive in mobile application and to run this application you need php version higher than 8.
+Note: It is not responsive in mobile application and to run this application you need at least php version 8.
