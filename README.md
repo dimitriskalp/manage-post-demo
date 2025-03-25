@@ -7,7 +7,7 @@ To see the code and the running application you need to follow these steps:
 1. Clone the repository -> "git clone https://github.com/dimitriskalp/manage-post-demo.git" 
 2. Copy the env.example in the project folder with name .env and do the same for the frontend folder his own .env.example.
 3. In the project folder run the command -> "composer install"
-4. Migrate the db -> "php artisan migrate" 
+4. Migrate the db -> "php artisan migrate" -> It will to recreate the db, just type yes.
 5. I created a command to populate the posts before starting the backend. Run this command -> "php artisan app:populate-posts"
 6. For seeing the posts in database follow these commands:
     - php artisan tinker
