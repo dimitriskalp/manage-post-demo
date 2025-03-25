@@ -13,6 +13,7 @@ export default function DefaultLayout () {
         setUser(data);
       })
   },[]);
+  // Because of this `[]` it is called once
 
   if (!token) {
     return <Navigate to="/login" />

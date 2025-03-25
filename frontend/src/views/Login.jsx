@@ -1,40 +1,37 @@
 import {Link} from "react-router-dom";
-import {useRef, useState} from "react";
+import {useCallback, useRef, useState} from "react";
 import axiosClient from "../axios-client.js";
 import {useStateContext} from "../contexts/ContextProvider.jsx";
+import {loginUser} from "../services/authService.js";
 
 export default function Login () {
   const emailRef = useRef();
   const passwordRef = useRef();
-
-  const {setUser,setToken} = useStateContext();
+  const { setUser, setToken } = useStateContext();
   const [errors, setErrors] = useState(null);
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const input = {
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-    }
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = useCallback(async () => {
+    if (loading) return;
+    setLoading(true);
     setErrors(null);
-    axiosClient.post('/login', input)
-      .then(({data}) => {
-        setToken(data.token);
-        setUser(data.user);
-      })
-      .catch(error => {
-        const response = error.response;
-        if (response && response.status === 422) {
-          if(response.data.errors) {
-            setErrors(response.data.errors);
-          } else {
-            setErrors({
-                email: [response.data.message]
-              }
-            );
-          }
-        }
-      });
-  }
+
+    const result = await loginUser(emailRef.current.value, passwordRef.current.value);
+
+    if (result.success) {
+      setToken(result.data.token);
+      setUser(result.data.user);
+    } else {
+      setErrors(result.errors);
+    }
+
+    setLoading(false);
+  }, [loading, setUser, setToken]);
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    await handleLogin();
+  };
 
   return (
     <div className="container login-container">
